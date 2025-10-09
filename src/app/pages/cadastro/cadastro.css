@@ -5,18 +5,22 @@
   position: relative;
 }
 
-.background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background-image: url('assets/background.jpg'); /* mesma imagem do login */
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+    background: linear-gradient(
+      rgba(0, 0, 0, 0.9), 
+      rgba(0, 0, 0, 0.9)
+    ),
+    url('assets/background.jpg');
   background-size: cover;
   background-position: center;
-  filter: brightness(0.05);
-  z-index: -1;
+  background-repeat: no-repeat;
+  background-attachment: fixed;   
 }
+
 
 .content {
   display: flex;
@@ -64,7 +68,7 @@
 }
 
 .login-container select {
-  appearance: none; /* remove estilo nativo do select */
+  appearance: none; 
   background-color: #fff;
   cursor: pointer;
 }
@@ -96,4 +100,14 @@
 
 .login-container a:hover {
   text-decoration: underline;
+}
+
+.telefone-group {
+  display: flex;
+  gap: 8px;
+}
+
+.telefone-group input:first-child {
+  width: 60px;
+  text-align: center;
 }

@@ -3,32 +3,76 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-cadastro',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [CommonModule, FormsModule, RouterModule, HttpClientModule],
   templateUrl: './cadastro.html',  
   styleUrls: ['./cadastro.css'],
 })
 export class CadastroComponent {
   nome = '';
-  email = '';
-  senha = '';
-  tipoPessoa = '';
-  username = '';
+  ddd = '';
   telefone = '';
-  endereco = '';
+  cep = '';
+  logradouro = '';
+  bairro = '';
+  cidade = '';
+  estado = '';
+  tipoPessoa = '';
+  email = '';
+  username = '';
+  senha = '';
 
-  constructor(private router: Router) {}
+  estados: string[] = [
+    'AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO',
+    'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI',
+    'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO'
+  ];
+
+  buscarEndereco() {
+    const cepLimpo = this.cep.replace(/\D/g, '');
+
+    if (cepLimpo.length === 8) {
+      this.http.get(`https://viacep.com.br/ws/${cepLimpo}/json/`)
+        .subscribe((dados: any) => {
+          if (!dados.erro) {
+            this.logradouro = dados.logradouro;
+            this.bairro = dados.bairro;
+            this.cidade = dados.localidade;
+            this.estado = dados.uf;
+          } else {
+            alert('CEP não encontrado.');
+          }
+        }, () => {
+          alert('Erro ao buscar o CEP.');
+        });
+    } else {
+      alert('CEP inválido. Digite 8 números.');
+    }
+  }
 
   cadastrar(event: Event) {
     event.preventDefault();
-    if (this.nome && this.email && this.senha) {
-      alert('Cadastro simulado!');
-      this.router.navigate(['/login']);
-    } else {
-      alert('Preencha todos os campos');
-    }
+    console.log({
+      nome: this.nome,
+      ddd: this.ddd,
+      telefone: this.telefone,
+      cep: this.cep,
+      logradouro: this.logradouro,
+      bairro: this.bairro,
+      cidade: this.cidade,
+      estado: this.estado,
+      tipoPessoa: this.tipoPessoa,
+      email: this.email,
+      username: this.username,
+      senha: this.senha
+    });
+    this.router.navigate(['/login']);
+
   }
+  constructor(private router: Router,private http: HttpClient)  {}
+
 }
