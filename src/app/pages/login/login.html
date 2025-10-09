@@ -8,7 +8,9 @@
       <form (submit)="login($event)">
         <input [(ngModel)]="username" name="username" placeholder="Login" required>
         <input [(ngModel)]="senha" name="senha" type="password" placeholder="Senha" required>
-        <button type="submit">Entrar</button>
+        <button type="submit" [disabled]="isLoading">
+  {{ isLoading ? 'Entrando...' : 'Entrar' }}
+</button>
       </form>
       <p>Não tem conta? <a routerLink="/cadastro">Cadastre-se</a></p>
     </div>

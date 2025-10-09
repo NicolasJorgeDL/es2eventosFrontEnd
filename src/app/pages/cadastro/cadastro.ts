@@ -26,6 +26,8 @@ export class CadastroComponent {
   username = '';
   senha = '';
 
+  isLoading = false;
+
   estados: string[] = [
     'AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO',
     'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI',
@@ -56,6 +58,12 @@ export class CadastroComponent {
 
   cadastrar(event: Event) {
     event.preventDefault();
+
+    if (this.isLoading) return;
+
+
+    this.isLoading = true;
+
     console.log({
       nome: this.nome,
       ddd: this.ddd,
@@ -70,7 +78,30 @@ export class CadastroComponent {
       username: this.username,
       senha: this.senha
     });
-    this.router.navigate(['/login']);
+
+      const dadosCadastro = {
+    nome: this.nome,
+    email: this.email,
+    senha: this.senha
+  };
+
+    this.http.post('http://localhost:8080/participante/auth/register', dadosCadastro)
+    .subscribe({
+      next: (res) => {
+        console.log('Cadastro realizado com sucesso:', res);
+        this.router.navigate(['/login']);
+      },
+      error: (err) => {
+        console.error('Erro ao cadastrar:', err);
+        alert('Ocorreu um erro ao cadastrar. Verifique os dados e tente novamente.');
+      },
+      complete: () => {
+        this.isLoading = false;
+      }
+    });
+
+
+//    this.router.navigate(['/login']);
 
   }
   constructor(private router: Router,private http: HttpClient)  {}
