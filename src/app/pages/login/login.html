@@ -1,0 +1,16 @@
+<div class="login-page">
+  <div class="background"></div>
+
+  <div class="content">
+    <h1>Es2 Eventos</h1>
+    <div class="login-container">
+      <h2>Login</h2>
+      <form (submit)="login($event)">
+        <input [(ngModel)]="username" name="username" placeholder="Login" required>
+        <input [(ngModel)]="senha" name="senha" type="password" placeholder="Senha" required>
+        <button type="submit">Entrar</button>
+      </form>
+      <p>Não tem conta? <a routerLink="/cadastro">Cadastre-se</a></p>
+    </div>
+  </div>
+</div>

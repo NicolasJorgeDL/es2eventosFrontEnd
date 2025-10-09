@@ -1,0 +1,91 @@
+.login-page {
+  position: relative;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  color: #fff;
+  margin: 0;  
+  padding: 0;
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-image: url('assets/background.jpg');
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.3);
+  z-index: -1;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.content h1 {
+  font-size: 48px;
+  margin-bottom: 40px;
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.6); 
+}
+
+/* Janela de login */
+.login-container {
+  width: 300px;
+  padding: 30px;
+  border-radius: 10px;
+  background-color: rgba(255,255,255,0.95); /* deixa quase branco, mas com leve transparência */
+  color: #333;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.login-container h2 {
+  margin-bottom: 20px;
+}
+
+.login-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.login-container input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.login-container button {
+  padding: 12px;
+  border: none;
+  background-color: #4CAF50;
+  color: white;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.login-container button:hover {
+  background-color: #45a049;
+}
+
+.login-container p {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.login-container a {
+  color: #4CAF50;
+  text-decoration: none;
+}
+
+.login-container a:hover {
+  text-decoration: underline;
+}
