@@ -1,0 +1,30 @@
+<div class="login-page">
+  <div class="background"></div>
+
+  <div class="content">
+    <h1>Cadastro</h1>
+    <div class="login-container">
+      <h2>Por favor preencha os campos abaixo</h2>
+      <form (submit)="cadastrar($event)">
+        <input [(ngModel)]="nome" name="nome" placeholder="Nome" required>
+        <input [(ngModel)]="telefone" name="telefone" placeholder="Telefone" required>
+        <input [(ngModel)]="endereco" name="endereco" placeholder="Endereço" required>
+
+
+        <select [(ngModel)]="tipoPessoa" name="tipoPessoa" required>
+          <option value="" disabled selected>Quem sou eu</option>
+          <option value="aluno">Aluno</option>
+          <option value="professor">Professor</option>
+          <option value="outro">Outro</option>
+        </select>
+
+        <input [(ngModel)]="email" name="email" placeholder="Email" required>
+        <input [(ngModel)]="username" name="username" placeholder="Login" required>
+        <input [(ngModel)]="senha" name="senha" type="password" placeholder="Senha" required>
+
+        <button type="submit">Cadastrar</button>
+      </form>
+      <p>Já tem conta? <a routerLink="/login">Voltar ao login</a></p>
+    </div>
+  </div>
+</div>
