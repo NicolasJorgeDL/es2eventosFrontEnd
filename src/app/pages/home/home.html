@@ -1,16 +1,38 @@
-<div class="home-page">
-  <nav class="navbar">
-    <div class="nav-left">
-        <a class="brand" routerLink="/home">Es2 Eventos</a>
-        <button class="nav-button">Criar Evento</button>
-        <button class="nav-button">Meus certificados</button>
-    </div>
-    <div class="nav-links">
-      <a class="profile-link" routerLink="/perfil">Perfil</a>
-    </div>
-  </nav>
+<nav class="navbar">
+  <div class="nav-left">
+    <h1>Eventos</h1>
+  </div>
 
-  <div class="content">
-    <button type="button" routerLink="/login">Sair</button>
+  <div class="nav-right">
+    <button (click)="irParaCadastroEvento()">Criar Evento</button>
+    <button (click)="irParaPerfil()">Perfil</button>
+    <button class="btn-sair" (click)="sair()">Sair</button>
+  </div>
+</nav>
+
+
+<div class="home-container">
+  <div class="eventos-grid">
+    <div *ngFor="let e of eventos" class="evento-card" (click)="abrirDetalhes(e)">
+      <h3>{{ e.nomeEvento }}</h3>
+      <p class="data">{{ e.dataInicio }} a {{ e.dataTermino }}</p>
+      <p class="descricao">{{ e.descricao }}</p>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal" *ngIf="eventoSelecionado">
+  <div class="modal-content">
+    <h2>{{ eventoSelecionado.nomeEvento }}</h2>
+    <p><strong>Data:</strong> {{ eventoSelecionado.dataInicio }} até {{ eventoSelecionado.dataTermino }}</p>
+    <p><strong>Local:</strong> {{ eventoSelecionado.local }}</p>
+    <p><strong>Descrição:</strong> {{ eventoSelecionado.descricao }}</p>
+    <p *ngIf="eventoSelecionado.site">
+      <strong>Site:</strong>
+      <a [href]="eventoSelecionado.site" target="_blank">{{ eventoSelecionado.site }}</a>
+    </p>
+
+    <button class="btn-fechar" (click)="fecharModal()">Fechar</button>
   </div>
 </div>

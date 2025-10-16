@@ -1,0 +1,67 @@
+<div class="page-container">
+  <div class="form-card">
+    <h2>Cadastro de Evento</h2>
+
+    <form (ngSubmit)="cadastrarEvento()">
+      <label>Título</label>
+      <input [(ngModel)]="evento.titulo" name="titulo" required>
+
+      <label>Data Início</label>
+      <input [(ngModel)]="evento.dataInicio" name="dataInicio" type="date" required>
+
+      <label>Data Término</label>
+      <input [(ngModel)]="evento.dataTermino" name="dataTermino" type="date" required>
+
+      <label>Local</label>
+      <input [(ngModel)]="evento.local" name="local" required>
+
+      <label>Horários</label>
+      <input [(ngModel)]="evento.horarios" name="horarios" placeholder="Ex: 09:00 - 18:00" required>
+
+      <label>Descrição</label>
+      <textarea [(ngModel)]="evento.descricao" name="descricao"></textarea>
+
+      <div class="palestras-section">
+        <h3>Palestras</h3>
+        <button type="button" class="btn-outline" (click)="abrirModal()">+ Adicionar Palestra</button>
+
+        <ul>
+          <li *ngFor="let p of evento.palestras; let i = index">
+            <span>
+              <strong>{{ p.titulo }}</strong> — {{ p.data }} {{ p.hora }}  
+              <small>(Vagas: {{ p.vagas }} | {{ p.palestrante?.nome }})</small>
+            </span>
+            <button type="button" class="btn-delete" (click)="removerPalestra(i)">×</button>
+          </li>
+        </ul>
+      </div>
+
+      <button type="submit" class="btn-primary">Salvar Evento</button>
+    </form>
+  </div>
+</div>
+
+<!-- Modal -->
+<div *ngIf="showModal" class="modal">
+  <div class="modal-content">
+    <h3>Adicionar Palestra</h3>
+
+    <label>Título</label>
+    <input [(ngModel)]="novaPalestra.titulo" name="tituloPalestra">
+
+    <label>Data</label>
+    <input [(ngModel)]="novaPalestra.data" type="date" name="dataPalestra">
+
+    <label>Hora</label>
+    <input [(ngModel)]="novaPalestra.hora" type="time" name="horaPalestra">
+
+    <label>Vagas</label>
+    <input [(ngModel)]="novaPalestra.vagas" type="number" name="vagasPalestra">
+
+    <label>Palestrante</label>
+    <select [(ngModel)]="novaPalestra.palestrante" name="palestrante">
+      <option *ngFor="let p of participantes" [ngValue]="p">{{ p.nome }}</option>
+    </select>
+
+    <div class="modal-actions">
+      <button class="btn-primary" (click)="adicionarPalestra()">Adicionar</button>

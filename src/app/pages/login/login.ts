@@ -15,7 +15,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 export class LoginComponent {
   username = '';
   senha = '';
-  isLoading = false; // para feedback de carregamento
+  isLoading = false; 
 
   constructor(private router: Router, private http: HttpClient) {}
 
@@ -30,21 +30,20 @@ export class LoginComponent {
     this.isLoading = true;
 
     const dadosLogin = {
-      email: this.username, // backend espera "email"
+      email: this.username,
       senha: this.senha
     };
 
-    this.http.post('http://localhost:8080/participante/auth/login', dadosLogin)
+    this.http.post('http://localhost:8080/auth/login', dadosLogin)
       .subscribe({
         next: (res: any) => {
           console.log('Login bem-sucedido:', res);
-          // Aqui você pode salvar o token, se o backend retornar um JWT
-          // localStorage.setItem('token', res.token);
-          this.router.navigate(['/home']); // redireciona para página inicial
+          this.router.navigate(['/home']); 
         },
         error: (err) => {
           console.error('Erro no login:', err);
           alert('Login ou senha inválidos');
+          this.isLoading = false;
         },
         complete: () => {
           this.isLoading = false;
