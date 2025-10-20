@@ -95,9 +95,10 @@ export class CadastroComponent {
       error: (err) => {
         console.error('Erro ao cadastrar:', err);
         alert('Ocorreu um erro ao cadastrar. Verifique os dados e tente novamente.');
-      },
-      complete: () => {
         this.isLoading = false;
+      },
+      complete: () => {this.isLoading = false;
+        
       }
     });
 

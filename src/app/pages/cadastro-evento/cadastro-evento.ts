@@ -61,13 +61,13 @@ export class CadastroEvento implements OnInit {
 
   cadastrarEvento() {
     console.log('Evento para salvar:', this.evento);
-    alert('Evento cadastrado (mock). Depois conectar com backend.');
-    
+
+
     // estilo do andre
     var eventoAndre = { 
       nomeEvento: this.evento.titulo,
-      dataInicio: this.evento.dataInicio,
-      dataTermino: this.evento.dataTermino,
+      dataInicio: this.evento.dataInicio.split("-").reverse().join("-"),
+      dataTermino: this.evento.dataTermino.split("-").reverse().join("-"),
       local: this.evento.local,
       descricao: this.evento.descricao,
       site: "https://www.seminariocienciacomputacao2025.com.br"
