@@ -39,7 +39,9 @@
   <input [(ngModel)]="username" name="username" placeholder="Login" required>
   <input [(ngModel)]="senha" name="senha" type="password" placeholder="Senha" required>
 
-  <button type="submit">Cadastrar</button>
+  <button type="submit" [disabled]="isLoading">
+  {{ isLoading ? 'Cadastrando...' : 'Cadastrar' }}
+</button>
 </form>
 
       <p>Já tem conta? <a routerLink="/login">Voltar ao login</a></p>
