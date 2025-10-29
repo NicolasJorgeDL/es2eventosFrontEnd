@@ -35,7 +35,7 @@ jobs:
 
       
       - name: Running Tests
-        run: npm test
+        run: npm test -- --watch=false
 
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v4
