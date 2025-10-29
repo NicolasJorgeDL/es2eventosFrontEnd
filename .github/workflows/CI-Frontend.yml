@@ -26,7 +26,7 @@ jobs:
           cache: 'npm' 
 
      
-      - name: Instalar dependências
+      - name: Instaling Dependencies
         run: npm install
 
      
@@ -36,3 +36,31 @@ jobs:
       
       - name: Running Tests
         run: npm test
+
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-build 
+          path: dist/  
+
+  deploy-frontend:
+    
+
+    needs: build-and-test-frontend
+    
+  
+    if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+    
+    runs-on: ubuntu-latest
+
+    steps:
+      
+      - name: Download Build Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: frontend-build 
+          path: deploy-package
+
+      - name: Deploy PlaceHolder
+
+      #There is no deploys yet.
