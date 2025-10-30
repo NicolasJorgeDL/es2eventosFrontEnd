@@ -59,6 +59,10 @@ export class CadastroEvento implements OnInit {
     this.evento.palestras.splice(index, 1);
   }
 
+  voltarHome(){
+    this.router.navigate(['/home']);
+  }
+
   cadastrarEvento() {
     console.log('Evento para salvar:', this.evento);
 
