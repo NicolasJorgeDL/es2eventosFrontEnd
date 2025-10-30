@@ -17,7 +17,7 @@ export class CadastroEvento implements OnInit {
     dataInicio: '',
     dataTermino: '',
     local: '',
-    horarios: '',
+    site: '',
     descricao: '',
     palestras: [] as any[]
   };
@@ -74,7 +74,7 @@ export class CadastroEvento implements OnInit {
       dataTermino: this.evento.dataTermino.split("-").reverse().join("-"),
       local: this.evento.local,
       descricao: this.evento.descricao,
-      site: "https://www.seminariocienciacomputacao2025.com.br"
+      site: this.evento.site,
     };
 
 
