@@ -80,13 +80,19 @@ export class CadastroComponent {
     });
 
       const dadosCadastro = {
-    nome: this.nome,
-    email: this.email,
-    senha: this.senha
+        email: this.email,
+        senha: this.senha,
+        nome: this.nome,
+        sobrenome: '',
+        telefone: `(${this.ddd})${this.telefone}`,
+        tipoParticipante: {id:this.tipoPessoa},
+        endereco: {
+          cep: this.cep
+        }
     };
 
 
-    this.http.post('http://localhost:8080/auth/register', dadosCadastro)
+    this.http.post('http://localhost:8080/participantes', dadosCadastro)
     .subscribe({
       next: (res) => {
         console.log('Cadastro realizado com sucesso:', res);

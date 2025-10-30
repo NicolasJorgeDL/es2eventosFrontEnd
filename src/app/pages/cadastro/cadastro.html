@@ -4,45 +4,63 @@
     <div class="login-container">
       <h2>Por favor preencha os campos abaixo</h2>
 
-<form (submit)="cadastrar($event)">
-  <input [(ngModel)]="nome" name="nome" placeholder="Nome completo" required>
+      <form (submit)="cadastrar($event)">
+        <input [(ngModel)]="nome" name="nome" placeholder="Nome completo" required />
 
-  <!-- DDD + Telefone -->
-  <div class="telefone-group">
-    <input [(ngModel)]="ddd" name="ddd" placeholder="DDD" mask="00" required>
-    <input [(ngModel)]="telefone" name="telefone" placeholder="Telefone" mask="00000-0000" required>
-  </div>
+        <!-- DDD + Telefone -->
+        <div class="telefone-group">
+          <input [(ngModel)]="ddd" name="ddd" placeholder="DDD" mask="00" required />
+          <input
+            [(ngModel)]="telefone"
+            name="telefone"
+            placeholder="Telefone"
+            mask="00000-0000"
+            required
+          />
+        </div>
 
-  <!-- CEP -->
-  <input [(ngModel)]="cep" name="cep" placeholder="CEP" mask="00000-000" required (blur)="buscarEndereco()">
+        <!-- CEP -->
+        <input
+          [(ngModel)]="cep"
+          name="cep"
+          placeholder="CEP"
+          mask="00000-000"
+          required
+          (blur)="buscarEndereco()"
+        />
 
-  <!-- Endereço -->
-  <input [(ngModel)]="logradouro" name="logradouro" placeholder="Logradouro (Rua, Avenida...)" required>
-  <input [(ngModel)]="bairro" name="bairro" placeholder="Bairro" required>
-  <input [(ngModel)]="cidade" name="cidade" placeholder="Cidade" required>
+        <!-- Endereço -->
+        <input
+          [(ngModel)]="logradouro"
+          name="logradouro"
+          placeholder="Logradouro (Rua, Avenida...)"
+          required
+        />
+        <input [(ngModel)]="bairro" name="bairro" placeholder="Bairro" required />
+        <input [(ngModel)]="cidade" name="cidade" placeholder="Cidade" required />
 
-  <select [(ngModel)]="estado" name="estado" required>
-    <option value="" disabled selected>Estado</option>
-    <option *ngFor="let uf of estados" [value]="uf">{{ uf }}</option>
-  </select>
+        <select [(ngModel)]="estado" name="estado" required>
+          <option value="" disabled selected>Estado</option>
+          <option *ngFor="let uf of estados" [value]="uf">{{ uf }}</option>
+        </select>
 
-  <!-- Tipo de pessoa -->
-  <select [(ngModel)]="tipoPessoa" name="tipoPessoa" required>
-    <option value="" disabled selected>Quem sou eu</option>
-    <option value="aluno">Aluno</option>
-    <option value="professor">Professor</option>
-    <option value="outro">Outro</option>
-  </select>
+        <!-- Tipo de pessoa -->
+        <select [(ngModel)]="tipoPessoa" name="tipoPessoa" required>
+          <option value="" disabled selected>Quem sou eu</option>
+          <option value="1">Aluno</option>
+          <option value="2">Professor</option>
+          <option value="3">Outro</option>
+        </select>
 
-  <!-- Login -->
-  <input [(ngModel)]="email" name="email" placeholder="Email" required>
-  <input [(ngModel)]="username" name="username" placeholder="Login" required>
-  <input [(ngModel)]="senha" name="senha" type="password" placeholder="Senha" required>
+        <!-- Login -->
+        <input [(ngModel)]="email" name="email" placeholder="Email" required />
+        <input [(ngModel)]="username" name="username" placeholder="Login" required />
+        <input [(ngModel)]="senha" name="senha" type="password" placeholder="Senha" required />
 
-  <button type="submit" [disabled]="isLoading">
-  {{ isLoading ? 'Cadastrando...' : 'Cadastrar' }}
-</button>
-</form>
+        <button type="submit" [disabled]="isLoading">
+          {{ isLoading ? 'Cadastrando...' : 'Cadastrar' }}
+        </button>
+      </form>
 
       <p>Já tem conta? <a routerLink="/login">Voltar ao login</a></p>
     </div>

@@ -43,6 +43,17 @@ export class Home implements OnInit {
     });
   }
 
+    increverNoEvento(evento: any) {
+    this.http.get(`http://localhost:8080/eventos/${evento.id}`).subscribe({
+      next: (res) => {
+        this.eventoSelecionado = res;
+      },
+      error: (err) => {
+        console.error('Erro ao buscar evento:', err);
+      }
+    });
+  }
+
   fecharModal() {
     this.eventoSelecionado = null;
   }
